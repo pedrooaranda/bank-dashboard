@@ -1,33 +1,35 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import { toast } from 'react-toastify';
+import Balance from '../components/Balance';
 
-import 'react-toastify/dist/ReactToastify.css';
-import { StyledToastContainer } from '../styles/toastStyle';
+import { Container, DashboardContainer } from '../styles/pages/Home';
 
-import { Container } from '../styles/pages/Home';
+const Home: NextPage = () => (
+  <Container>
+    <Head>
+      <title>Dashboard</title>
+    </Head>
 
-const Home: NextPage = () => {
-  const handleHotToastSuccess = () => toast.success('Sucesso!');
-  const handleHotToastError = () => toast.error('Erro!');
-
-  return (
-    <>
-      <StyledToastContainer />
-      <Container>
-        <Head>
-          <title>Toast notify</title>
-        </Head>
-
-        <button type="button" onClick={handleHotToastSuccess}>
-          <span>success</span>
+    <DashboardContainer>
+      <div className="balance-container">
+        <div className="header-text">
+          <h1>Overview</h1>
+        </div>
+        <div className="balance">
+          <Balance />
+        </div>
+        <div className="balance">
+          <Balance />
+        </div>
+        <button className="payment-btn" type="button">
+          Make a payment
         </button>
-        <button type="button" onClick={handleHotToastError}>
-          <span>error</span>
-        </button>
-      </Container>
-    </>
-  );
-};
+      </div>
+      <div className="graph-container">
+        <span>Money Flow</span>
+      </div>
+    </DashboardContainer>
+  </Container>
+);
 
 export default Home;
